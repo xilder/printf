@@ -1,4 +1,5 @@
-#include "holberton.h"
+#include "main.h"
+
 
 /**
  * _printf - produces output according to a format
@@ -10,14 +11,18 @@
  */
 int _printf(const char *format, ...)
 {
-	if (!format || !_strcmp(format, "%"))
-		return (-1);
-	unsigned int (*pfunc)(va_list);
+	int (*pfunc)(va_list, flags_t *);
 	const char *p;
-	int count = 0;
 	va_list arguments;
+	flags_t flags = {0, 0, 0};
+
+	register int count = 0;
 
 	va_start(arguments, format);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
 	for (p = format; *p; p++)
 	{
 		if (*p == '%')
@@ -25,24 +30,19 @@ int _printf(const char *format, ...)
 			p++;
 			if (*p == '%')
 			{
-				_putchar('%');
-				count++;
+				count += _putchar('%');
 				continue;
 			}
+			while (get_flag(*p, &flags))
+				p++;
 			pfunc = get_print(*p);
-			if (!pfunc)
-			{
-				_putchar('%');
-				_putchar(*p);
-				count += 2;
-			} else
-				count += pfunc(arguments);
+			count += (pfunc)
+				? pfunc(arguments, &flags)
+				: _printf("%%%c", *p);
 		} else
-		{
-			count++;
-			_putchar(*p);
-		}
+			count += _putchar(*p);
 	}
+	_putchar(-1);
 	va_end(arguments);
 	return (count);
 }

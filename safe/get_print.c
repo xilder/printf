@@ -1,9 +1,4 @@
 #include "main.h"
-
-<<<<<<< HEAD
-=======
-
->>>>>>> f2f3bc4d42a3b7cd1240e217e71c786717794804
 /**
  * get_print - selects the right printing function
  * depending on the conversion specifier passed to _printf

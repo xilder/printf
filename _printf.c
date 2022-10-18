@@ -24,7 +24,7 @@ int _printf(const char *format, ...)
 			write(1, p, 1);
 			i++;
 			continue;
-		}	
+		}
 		switch (*++p)
 		{
 			case 'c':

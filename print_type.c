@@ -1,4 +1,5 @@
-#include "main.h"
+nclude "holberton.h"
+
 /**
  * get_print - selects the right printing function
  * depending on the conversion specifier passed to _printf
@@ -11,7 +12,7 @@
  */
 int (*get_print(char s))(va_list, flags_t *)
 {
-	ph func_arr[] = {
+	pt func_arr[] = {
 		{'i', print_int},
 		{'s', print_string},
 		{'c', print_char},

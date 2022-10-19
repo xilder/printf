@@ -48,7 +48,28 @@ int handle_print(const char *fmt, int *i,
 
 /****************** FUNCTIONS ******************/
 
-/* Funtions to print list types, char map_to[],
+/* Funtions to print chars and strings */
+int print_char(va_list types, char buffer[],
+	       int flags, int width, int precision, int size);
+int print_string(va_list types, char buffer[],
+		 int flags, int width, int precision, int size);
+int print_percent(va_list types, char buffer[],
+		  int flags, int width, int precision, int size);
+
+/* Functions to print numbers */
+int print_int(va_list types, char buffer[],
+	      int flags, int width, int precision, int size);
+int print_binary(va_list types, char buffer[],
+		 int flags, int width, int precision, int size);
+int print_unsigned(va_list types, char buffer[],
+		   int flags, int width, int precision, int size);
+int print_octal(va_list types, char buffer[],
+		int flags, int width, int precision, int size);
+int print_hexadecimal(va_list types, char buffer[],
+		      int flags, int width, int precision, int size);
+int print_hexa_upper(va_list types, char buffer[],
+		     int flags, int width, int precision, int size);
+int print_hexa(va_list types, char map_to[],
 	       char buffer[], int flags, char flag_ch, int width,
 	       int precision, int size);
 
@@ -95,25 +116,4 @@ int is_digit(char);
 long int convert_size_number(long int num, int size);
 long int convert_size_unsgnd(unsigned long int num, int size);
 
-#endif /* MAIN_H */chars and strings */
-int print_char(va_list types, char buffer[],
-	       int flags, int width, int precision, int size);
-int print_string(va_list types, char buffer[],
-		 int flags, int width, int precision, int size);
-int print_percent(va_list types, char buffer[],
-		  int flags, int width, int precision, int size);
-
-/* Functions to print numbers */
-int print_int(va_list types, char buffer[],
-	      int flags, int width, int precision, int size);
-int print_binary(va_list types, char buffer[],
-		 int flags, int width, int precision, int size);
-int print_unsigned(va_list types, char buffer[],
-		   int flags, int width, int precision, int size);
-int print_octal(va_list types, char buffer[],
-		int flags, int width, int precision, int size);
-int print_hexadecimal(va_list types, char buffer[],
-		      int flags, int width, int precision, int size);
-int print_hexa_upper(va_list types, char buffer[],
-		     int flags, int width, int precision, int size);
-int print_hexa(va_
+#endif /* MAIN_H */
